@@ -274,8 +274,8 @@ Array.iter dessinerligne plateau
 ;;
 
 
-
 dessinerPlateau ();;
 
  melanger nbp;;
 
+let _=read_line();;
