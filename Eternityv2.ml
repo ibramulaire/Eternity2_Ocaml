@@ -5,7 +5,7 @@ type color ={r:int; g:int;b:int};;
 type piece ={posx:int;posy:int;top:int; rigth :int; bottom:int;left:int;num:int };; 
 type noeud={piece:piece; list: piece list};; 
 
-let nbp=10;; 
+let nbp=12;; 
 let rouge={r=255;g=0;b=0};; 
 let vert={r=0;g=255;b=0};;
 let bleu={r=0;g=0;b=255};;
@@ -18,6 +18,8 @@ let rose={r=253;g=108;b=158};;
 let haki={r=121;g=137;b=51};; 
 let noir={r=0;g=0;b=0};; 
 let lesCouleur =[|rouge;vert;bleu;cyan;magenta;jaune;gris;fauve;rose;haki|];;
+
+
 let lesCouleuraf =[|rouge;vert;bleu;cyan;magenta;jaune;gris;fauve;rose;haki;noir|];;
 let pnull={posx=(-1);posy=(-1);top=(-1);rigth=(-1); bottom=(-1);left=(-1);num=(-1)};;
 
@@ -374,7 +376,7 @@ let melanger taille=
 ;;
 
 plateau;;
-melanger nbp;;
+melanger (nbp*(nbp*nbp));;
 dessinerPlateau ();;
 let _=read_line();;
 
@@ -434,14 +436,20 @@ type arbre={ pieces:piece list; possible:piece list array}
 let placer piece possibles arbre=
   plateau.((piece.posy)).(piece.posx)<-piece;
   dessinerPlateau ();
+ 
    
   {pieces= [piece]@arbre.pieces;possible=Array.append [|possibles|] arbre.possible} 
   
 ;;
 
 let compatible x y =
-  if(x==y||y==(-1))
+  if(x<>10&&(x==y||y==(-1)))
   then 
+    true
+  else
+ 
+  if(x==10&&y==(10))
+  then
     true
   else
     false
